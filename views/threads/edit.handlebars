@@ -1,0 +1,26 @@
+{{#each errors}}
+<div class="alert alert-danger">
+  {{text}}
+</div>
+{{else}}
+{{/each}}
+
+<div class="card card-body">
+  <h2>Edit Thread</h2>
+  <form action="/threads/{{thread.id}}?_method=PUT" method="post">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input value="{{thread.title}}" class="form-control" type="text" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="title">Details</label>
+        <textarea class="form-control" type="text" name="details" required>
+          {{thread.details}}
+        </textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">
+      Submit
+    </button>
+  </form>
+</div>

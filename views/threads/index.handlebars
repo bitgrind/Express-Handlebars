@@ -1,0 +1,13 @@
+{{#each threads}}
+  <div class="card card-body mb-4">
+    <h4>{{title}}</h4>
+    <p>{{details}}</p>
+    <a class="btn btn-light btn-block mb-4" href="/threads/edit/{{id}}">Edit</a>
+    <form class="" action="/threads/{{id}}?_method=DELETE" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <input class="btn btn-danger btn-block" type="submit" value="Delete">
+    </form>
+  </div>
+{{else}}
+  <p>No Videos Ideas Listed</p>
+{{/each}}
