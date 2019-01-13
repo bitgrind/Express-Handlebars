@@ -27,9 +27,14 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     _id: req.params.id
   })
   .then( thread => {
-    res.render('threads/edit', {
-      thread: thread
-    });
+    if(thread.user !== req.user.id) {
+      req.flash('error_msg', 'Not Authorized');
+      res.redirect('/theads');
+    } else {
+      res.render('threads/edit', {
+        thread: thread
+      });
+    }
   });
 });
 
