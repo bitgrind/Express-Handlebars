@@ -17,8 +17,12 @@ const usersRoutes = require('./routes/users');
 //Passport Config
 require('./config/passport')(passport);
 
+//Db conig
+const db = require('./config/database');
+
+
 //mongoose connections
-mongoose.connect('mongodb://localhost/pstvdb', {
+mongoose.connect(db.mongoURI, {
   useNewUrlParser: true
 }).then((db) => {
   console.log('Mongodb Connected');
@@ -82,7 +86,7 @@ app.get('/about', (req, res) => {
   res.render('about');
 });
 
-const port = prcoess.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
