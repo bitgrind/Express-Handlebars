@@ -1,14 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
+const { ensureAuthenticated } = require('../helpers/auth');
 
 //Load Thead model
 require('../models/Thread');
 const Thread = mongoose.model('thread');
 
 
-router.get('/', (req, res) => {
-  Thread.find({})
+router.get('/', ensureAuthenticated, (req, res) => {
+  Thread.find({user: req.user.id})
     .sort({date:'desc'})
     .then( threads => {
       res.render('threads/index', {
@@ -17,11 +18,11 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('threads/add');
 });
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   Thread.findOne({
     _id: req.params.id
   })
@@ -53,7 +54,7 @@ router.post('/', (req, res) => {
     const newUser = {
       title: req.body.title,
       details: req.body.details,
-
+      user: req.user.id
     }
     new Thread(newUser)
       .save()
@@ -65,7 +66,7 @@ router.post('/', (req, res) => {
 });
 
 //Edit form
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
   Thread.findOne({
     _id: req.params.id
   })
@@ -80,7 +81,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
   Thread.remove({_id: req.params.id})
     .then(() => {
       req.flash('success_msg', 'Delete Successful!');

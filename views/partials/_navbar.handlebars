@@ -15,19 +15,25 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="/users/login">Login</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="/users/register">Register</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a href="#" class="nav-like dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Video Thread</a>
-          <div class="dropdown-menu">
-            <a href="/threads" class="dropdown-item">Threads</a>
-            <a href="/threads/add" class="dropdown-item">Add Thread</a>
-          </div>
-        </li>
+        {{#if user}}
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Video Thread</a>
+            <div class="dropdown-menu">
+              <a href="/threads" class="dropdown-item">Threads</a>
+              <a href="/threads/add" class="dropdown-item">Add Thread</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/logout">Logout</a>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/users/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/register">Register</a>
+          </li>
+        {{/if}}
       </ul>
       <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
