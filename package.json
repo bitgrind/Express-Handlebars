@@ -4,7 +4,8 @@
   "description": "Positivity Platform",
   "main": "app.js",
   "scripts": {
-    "start" : "node app.js"
+    "test": "mocha",
+    "start": "node app.js"
   },
   "author": "Keith Stedman",
   "license": "ISC",
@@ -19,5 +20,10 @@
     "mongoose": "^5.4.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
   }
 }
