@@ -4,7 +4,7 @@
   "description": "Positivity Platform",
   "main": "app.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha tests/test --exit",
     "start": "node app.js"
   },
   "author": "Keith Stedman",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "mocha": "^5.2.0",
     "supertest": "^3.3.0"
   }

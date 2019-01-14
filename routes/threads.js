@@ -40,7 +40,9 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 
 //Process form
 router.post('/', (req, res) => {
+  console.log('Post Thread');
   console.log(req.body);
+  console.log(req.user);
   let errors = [];
 
   if(!req.body.title) {
@@ -49,6 +51,7 @@ router.post('/', (req, res) => {
   if(!req.body.details) {
     errors.push({text:'Please Add Details'});
   }
+  console.log(errors);
   if(errors.length > 0) {
     res.render('/treads/add', {
       errors: errors,
@@ -56,12 +59,12 @@ router.post('/', (req, res) => {
       details: req.body.details
     });
   } else {
-    const newUser = {
+    const newThread = {
       title: req.body.title,
       details: req.body.details,
       user: req.user.id
     }
-    new Thread(newUser)
+    new Thread(newThread)
       .save()
       .then(thread => {
         req.flash('success_msg', 'Thread Added Successful!');

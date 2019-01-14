@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Create Schema
-const ThreadSchema = new Schema({
+const Thread = new Schema({
   title: {
     type: String,
     required: true
@@ -21,4 +21,4 @@ const ThreadSchema = new Schema({
   }
 });
 
-mongoose.model('thread', ThreadSchema);
+mongoose.model('thread', Thread);
